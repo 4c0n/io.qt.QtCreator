@@ -607,6 +607,15 @@ modules:
     cleanup:
       - /share/doc/clazy/
       - /bin/clazy
+  - name: android-cli-sdk-tools
+    buildsystem: simple
+    build-commands:
+      - install -d bin/ /app/
+      - install -d lib/ /app/
+    sources:
+      - type: archive
+        url: https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
+        sha256: 124f2d5115eee365df6cf3228ffbca6fc3911d16f8025bebd5b1c6e2fcfa7faf
 cleanup:
   - /include/llvm
   - /include/clang
