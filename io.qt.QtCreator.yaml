@@ -607,15 +607,34 @@ modules:
     cleanup:
       - /share/doc/clazy/
       - /bin/clazy
-  - name: android-cli-sdk-tools
+  - name: Android platform tools
     buildsystem: simple
-    build-commands:
-      - install -d bin/ /app/
-      - install -d lib/ /app/
+    build-commands: [] # TODO: Add installation commands
     sources:
       - type: archive
-        url: https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
-        sha256: 124f2d5115eee365df6cf3228ffbca6fc3911d16f8025bebd5b1c6e2fcfa7faf
+        url: https://dl.google.com/android/repository/platform-tools_r31.0.3-linux.zip
+        sha1: f09581347ed39978abb3a99c6bb286de6adc98ef
+  - name: Android build tools
+    buildsystem: simple
+    build-commands: [] # TODO: Add installation commands
+    sources:
+      - type: archive
+        url: https://dl.google.com/android/repository/build-tools_r30.0.3-linux.zip
+        sha1: 2076ea81b5a2fc298ef7bf85d666f496b928c7f1
+  - name: Android SDK platform
+    buildsystem: simple
+    build-commands: [] # TODO: Add installation commands
+    sources:
+      - type: archive
+        url: https://dl.google.com/android/repository/platform-30_r03.zip
+        sha1: e7c6280901dcfa511af098d67dd88c4dfcbc6ea2
+  - name: Android NDK
+    buildsystem: simple
+    build-commands: [] # TODO: Add Installation commands
+    sources:
+      - type: archive
+          url: https://dl.google.com/android/repository/android-ndk-r22-linux-x86_64.zip # TODO: This package is architecture specific and there is no ARM alternative
+        sha1: 82274313aba10da6177fd41868f56a0f9651dd81
 cleanup:
   - /include/llvm
   - /include/clang
