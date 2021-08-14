@@ -610,8 +610,8 @@ modules:
   - name: android-platform-tools
     buildsystem: simple
     build-commands:
-      - mkdir -p /app/share/android/platform-tools
-      - cp -r * /app/share/android/platform-tools/
+      - mkdir -p /app/share/android/android-11/platform-tools
+      - cp -r * /app/share/android/android-11/platform-tools/
     sources:
       - type: archive
         url: https://dl.google.com/android/repository/platform-tools_r31.0.3-linux.zip
@@ -619,7 +619,6 @@ modules:
   - name: android-build-tools
     buildsystem: simple
     build-commands:
-      - mkdir /app/share/android/android-11
       - cp -r * /app/share/android/android-11/
     sources:
       - type: archive
@@ -642,6 +641,27 @@ modules:
       - type: archive
         url: https://dl.google.com/android/repository/android-ndk-r22-linux-x86_64.zip # TODO: This package is architecture specific and there is no ARM alternative
         sha1: 82274313aba10da6177fd41868f56a0f9651dd81
+  - name: android-qtbase
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DQT_BUILD_EXAMPLES=OFF
+      - -DQT_BUILD_TESTS=OFF
+      - -DQT_HOST_PATH=/app
+      - -DCMAKE_INSTALL_PREFIX=/app/qt-android/
+      - -DQT_QMAKE_TARGET_MKSPEC=android-clang
+      - -DANDROID_SDK_ROOT=/app/share/android/android-11/
+      - -DANDROID_NDK_ROOT=/app/share/android/android-ndk-r22/
+    sources:
+      - type: git
+        url: git://code.qt.io/qt/qtbase.git
+        tag: v6.1.2
+        x-checker-data:
+          type: anitya
+          project-id: 7927
+          tag-template: v$version
+          stable-only: true
+        commit: 4dcedb8ca4ae0c9c533997074098297abbfcf1c3
 cleanup:
   - /include/llvm
   - /include/clang
