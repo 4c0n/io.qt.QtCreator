@@ -611,8 +611,8 @@ modules:
   - name: android-platform-tools
     buildsystem: simple
     build-commands:
-      - mkdir -p /app/share/android/android-11/platform-tools
-      - cp -r * /app/share/android/android-11/platform-tools/
+      - mkdir -p /app/share/android/platform-tools
+      - cp -r * /app/share/android/platform-tools/
     sources:
       - type: archive
         url: https://dl.google.com/android/repository/platform-tools_r31.0.3-linux.zip
@@ -620,7 +620,8 @@ modules:
   - name: android-build-tools
     buildsystem: simple
     build-commands:
-      - cp -r * /app/share/android/android-11/
+      - mkdir -p /app/share/android/platforms/android-30
+      - cp -r * /app/share/android/platforms/android-30/
     sources:
       - type: archive
         url: https://dl.google.com/android/repository/build-tools_r30.0.3-linux.zip
@@ -628,7 +629,7 @@ modules:
   - name: android-sdk-platform
     buildsystem: simple
     build-commands:
-      - cp -rn * /app/share/android/android-11/
+      - cp -rn * /app/share/android/platforms/android-30/
     sources:
       - type: archive
         url: https://dl.google.com/android/repository/platform-30_r03.zip
@@ -651,7 +652,7 @@ modules:
       - -DQT_HOST_PATH=/app
       - -DCMAKE_INSTALL_PREFIX=/app/qt-android/
       - -DQT_QMAKE_TARGET_MKSPEC=android-clang
-      - -DANDROID_SDK_ROOT=/app/share/android/android-11/
+      - -DANDROID_SDK_ROOT=/app/share/android/
       - -DANDROID_NDK_ROOT=/app/share/android/android-ndk-r22/
     sources:
       - type: git
